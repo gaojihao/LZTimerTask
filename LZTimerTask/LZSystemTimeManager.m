@@ -1,10 +1,8 @@
-//
-//  LZSystemTimeManager.m
-//  xingyujiaoyu
-//
-//  Created by 栗志 on 2018/1/17.
-//  Copyright © 2018年 com.lizhi1026. All rights reserved.
-//
+/*
+ *LZSystemTimeManager
+ *
+ *Copyright ©com.lizhi1026. All rights reserved.
+ */
 
 #import "LZSystemTimeManager.h"
 #import "LZTimerTask.h"
@@ -32,14 +30,34 @@
 
 @synthesize systemTime = _systemTime;
 
+static LZSystemTimeManager *_manager;
+
+
 + (instancetype)sharedInstance {
-    static LZSystemTimeManager *_manager;
+    
+    return [[self alloc] init];
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone{
     static dispatch_once_t onceToken;
     
+    // 由于alloc方法内部会调用allocWithZone: 所以我们只需要保证在该方法只创建一个对象即可
     dispatch_once(&onceToken, ^{
-        _manager = [[LZSystemTimeManager alloc] init];
+        // 只执行1次的代码(这里面默认是线程安全的)
+        _manager = [super allocWithZone:zone];
     });
     
+    return _manager;
+    
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return _manager;
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
     return _manager;
 }
 

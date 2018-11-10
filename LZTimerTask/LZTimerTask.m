@@ -1,10 +1,8 @@
-//
-//  LZTimerTask.m
-//  xingyujiaoyu
-//
-//  Created by 栗志 on 2018/1/17.
-//  Copyright © 2018年 com.lizhi1026. All rights reserved.
-//
+/*
+ *LZTimerTask
+ *
+ *Copyright ©com.lizhi1026. All rights reserved.
+ */
 
 #import "LZTimerTask.h"
 #import "LZSystemTimeManager.h"
